@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1" />
+<meta name="theme-color" content="#07070d" />
+<title>For Priya 🤍</title>
+<meta name="description" content="A little something, made with love." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Living background layers -->
+  <div class="sky">
+    <canvas id="stars"></canvas>
+    <div class="rays"></div>
+    <div class="bloom"></div>
+    <canvas id="petals"></canvas>
+    <canvas id="shooters"></canvas>
+    <div class="vignette"></div>
+  </div>
+
+  <!-- Mute button -->
+  <button id="mute" class="glass mute" aria-label="Mute music" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path class="on" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/><path class="off" d="M22 9l-6 6M16 9l6 6" style="display:none"/></svg>
+  </button>
+
+  <!-- Skip button -->
+  <button id="skip" class="glass skip" aria-label="Skip to the question" hidden>Skip ▶</button>
+
+  <!-- Intro (rose) -->
+  <section id="intro" class="scene active">
+    <div class="rose-wrap" id="roseTap" role="button" aria-label="Tap the rose to begin">
+      <div class="rose-glow"></div>
+      <svg class="rose" viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <radialGradient id="petal" cx="50%" cy="45%" r="60%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="55%" stop-color="#f4eef0"/>
+            <stop offset="100%" stop-color="#c9b9c2"/>
+          </radialGradient>
+          <radialGradient id="core" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff"/>
+            <stop offset="100%" stop-color="#e8dde3"/>
+          </radialGradient>
+        </defs>
+        <g transform="translate(100 100)">
+          <ellipse rx="60" ry="18" cy="55" fill="#000" opacity=".25" filter="blur(6px)"/>
+          <g class="petals-outer">
+            <path d="M0,-55 C40,-55 60,-20 40,20 C20,50 -20,50 -40,20 C-60,-20 -40,-55 0,-55Z" fill="url(#petal)"/>
+          </g>
+          <g class="petals-mid">
+            <path d="M0,-40 C30,-40 45,-10 30,20 C15,40 -15,40 -30,20 C-45,-10 -30,-40 0,-40Z" fill="url(#petal)" opacity=".95"/>
+          </g>
+          <g class="petals-in">
+            <path d="M0,-25 C18,-25 28,-5 18,15 C10,28 -10,28 -18,15 C-28,-5 -18,-25 0,-25Z" fill="url(#core)"/>
+          </g>
+          <circle r="6" fill="#fff"/>
+        </g>
+      </svg>
+      <p class="hint">🌹 Tap the rose to begin. 🤍</p>
+    </div>
+  </section>
+
+  <!-- Scenes -->
+  <section class="scene" data-scene="1">
+    <div class="glass panel">
+      <h1 class="tw">Yelloooooo, what's up? 😌</h1>
+      <p>I could've just sent you a text...</p>
+      <p>But then I thought,</p>
+      <p><em>"Kuchh alag karte hain... maje aayenge. 😂"</em></p>
+    </div>
+  </section>
+
+  <section class="scene" data-scene="2">
+    <div class="glass panel">
+      <h1 class="tw">Okayy....</h1>
+      <p>So, I've got just one question for you.</p>
+      <p>But before that...</p>
+      <p><em>Promise you won't laugh. 😂</em></p>
+    </div>
+  </section>
+
+  <section class="scene" data-scene="3">
+    <div class="glass panel">
+      <h1 class="tw">Ummm...</h1>
+      <p>Main iske baare mein kaafi time se soch raha tha...</p>
+      <p>But phir har baar socha,</p>
+      <p><em>"Chhod yaar... dekhte hain. 😂"</em></p>
+    </div>
+  </section>
+
+  <section class="scene proposal" data-scene="propose">
+    <div class="glass panel large">
+      <h1 class="tw">Sooo, Ms. Priya Soni.... 🫣</h1>
+      <p class="big">Will you let me take you out on a date? 🤍🌹</p>
+      <div class="btns">
+        <button id="yes" class="glass btn yes">❤️ YESS!!</button>
+        <button id="no" class="glass btn no">🤔 SOCHNA PADEGA</button>
+      </div>
+      <p id="noMsg" class="soft" hidden>Fair enough 😄 Take your time.</p>
+    </div>
+  </section>
+
+  <section class="scene" data-scene="yes1">
+    <div class="glass panel">
+      <h1 class="tw">WWOOOOWWW!! 🎉🎊</h1>
+      <p>Officially, you've made my day. 😌🤍</p>
+      <p><em>Bas ab plan cancel mat karna... 😂🌹</em></p>
+    </div>
+  </section>
+
+  <section class="scene" data-scene="yes2">
+    <div class="glass panel">
+      <h1 class="tw">See you soon? ☕🤍</h1>
+    </div>
+  </section>
+
+  <audio id="audio" src="assets/music.mp3" preload="auto"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
